@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model ChangelogEntry {
+  id         Int           @id @default(autoincrement())
+  title      String
+  summary    String
+  createdAt  DateTime      @default(now())
+  product    String
+  tags       ChangelogEntryTag[]
+}
+
+model Tag {
+  id         Int           @id @default(autoincrement())
+  name       String        @unique
+  entries    ChangelogEntryTag[]
+}
+
+model ChangelogEntryTag {
+  entry      ChangelogEntry @relation(fields: [entryId], references: [id])
+  entryId    Int
+  tag        Tag            @relation(fields: [tagId], references: [id])
+  tagId      Int
+
+  @@id([entryId, tagId])
+}
