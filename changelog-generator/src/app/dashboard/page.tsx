@@ -87,7 +87,10 @@ export default function DashboardPage() {
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">Dashboard</h1>
                 <button
-                    onClick={() => signOut({callbackUrl: "/"})}
+                    onClick={() => signOut({
+                        callbackUrl: "/",
+                        redirect: true,
+                    })}
                     className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                 >
                     Sign Out

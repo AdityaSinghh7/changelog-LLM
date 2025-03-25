@@ -26,7 +26,12 @@ export default function LoginPage() {
         <div className="min-h-screen flex flex-col justify-center items-center p-6">
             <h1 className="text-3xl font-bold mb-4">Sign In</h1>
             <button
-                onClick={() => signIn("github")}
+                onClick={() => signIn("github",
+                    {
+                        callbackUrl: '/dashboard',
+                        prompt: 'login',
+                    })
+            }
                 className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
             >
                 Sign in with GitHub

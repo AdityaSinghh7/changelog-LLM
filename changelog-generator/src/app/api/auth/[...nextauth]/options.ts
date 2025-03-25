@@ -14,6 +14,12 @@ export const authOptions: NextAuthOptions = {
         GithubProvider({
             clientId: clientId,
             clientSecret: clientSecret,
+            authorization: {
+              url: "https://github.com/login/oauth/authorize",
+                params: {
+                    login: "",
+                },
+            },
             profile(profile : GithubProfile) {
                 return{
                     id: profile.id.toString(),

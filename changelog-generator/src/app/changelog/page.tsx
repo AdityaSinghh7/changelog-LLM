@@ -236,18 +236,18 @@ export default function ChangelogPage(){
 
         if (startDate) {
             filtered = filtered.filter(
-                (c) => new Date(c.commit.author.date) >= new Date(startDate)
+                (c) => new Date(c.commit.author.date) >= new Date(startDate + "T00:00:00")
             );
         }
 
         if (endDate) {
             filtered = filtered.filter(
-                (c) => new Date(c.commit.author.date) <= new Date(endDate)
+                (c) => new Date(c.commit.author.date) <= new Date(endDate + "T23:59:59")
             );
         }
 
         setFilteredCommits(filtered);
-    }, [selectedRepo, search]);
+    }, [selectedRepo, search, search, startDate, endDate]);
 
 
     useEffect(() => {
@@ -272,8 +272,8 @@ export default function ChangelogPage(){
                 const filtered = allSummaries.filter(entry => {
                     const matchRepo = selectedRepo ? entry.title.includes(selectedRepo) : true;
                     const matchSearch = search ? entry.bullets.some(b => b.toLowerCase().includes(search.toLowerCase())) : true;
-                    const matchDate = (!startDate || new Date(entry.dateRange.split(" - ")[1]) >= new Date(startDate)) &&
-                        (!endDate || new Date(entry.dateRange.split(" - ")[0]) <= new Date(endDate));
+                    const matchDate = (!startDate || new Date(entry.dateRange.split(" - ")[1]) >= new Date(startDate + "T00:00:00")) &&
+                        (!endDate || new Date(entry.dateRange.split(" - ")[0]) <= new Date(endDate + "T23:59:59"));
                     return matchRepo && matchSearch && matchDate;
                 });
 
@@ -340,13 +340,13 @@ export default function ChangelogPage(){
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="border px-3 py-2 rounded"
+                    className="border px-3 py-2 rounded text-white bg-gray-500"
                 />
                 <input
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="border px-3 py-2 rounded"
+                    className="border px-3 py-2 rounded text-white bg-gray-500"
                 />
             </div>
             {/* ✅ AI Changelog Summary Section */}

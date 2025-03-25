@@ -29,7 +29,8 @@ export async function POST(request: Request) {
                     console.log("Repository name: ", repository);
 
                     const prompt = `
-You are an assistant that writes clean and structured changelogs based on developer commit messages.
+You are an assistant that writes clean and structured changelogs based on developer commit messages. 
+You have to summarize the changes that would be relevant to an end-user in a few bullet points. 
 
 This changelog is for the repository: **${repository}**
 Summarize the following commit messages (from ${startDate} to ${endDate}) into:
