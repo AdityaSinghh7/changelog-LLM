@@ -25,7 +25,8 @@ A developer-focused tool that uses LLMs to automatically generate clean, structu
    GITHUB_CLIENT_ID=your_github_oauth_client_id  
    GITHUB_CLIENT_SECRET=your_github_oauth_client_secret  
    NEXTAUTH_SECRET=your_nextauth_secret  
-   NEXTAUTH_URL=http://localhost:3000```
+   NEXTAUTH_URL=http://localhost:3000
+   ```
 
 4. Run the Development Server  
     ```
